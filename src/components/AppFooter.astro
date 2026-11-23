@@ -1,0 +1,57 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  profile: CollectionEntry<'profile'>['data'];
+}
+
+const { profile } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>
+      &copy; {year} {profile.name}
+    </p>
+    <ul class="footer-links">
+      <li>
+        <a href={`mailto:${profile.email}`}>{profile.email}</a>
+      </li>
+      {profile.socials.map((social) => (
+        <li>
+          <a href={social.url} target="_blank" rel="noopener noreferrer">
+            {social.label}
+            <span class="sr-only"> (se abre en una pestaña nueva)</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: 4rem;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.9375rem;
+  }
+
+  .footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+    padding-block: 1.5rem;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    padding: 0;
+    list-style: none;
+  }
+</style>
