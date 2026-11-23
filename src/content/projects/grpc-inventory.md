@@ -1,10 +1,10 @@
 ---
-title: "gRPC Inventory"
-summary: "Sistema de inventario y ventas con microservicios gRPC de reportes y auditoría, diseñado para tolerar fallos."
-cover: "../../assets/projects/placeholder.svg"
-coverAlt: "Captura pendiente del sistema gRPC Inventory"
-technologies: ["Node.js", "gRPC", "Protocol Buffers", "SQLite"]
-repoUrl: "https://github.com/jerichd4c/grpc-inventory"
+title: 'gRPC Inventory'
+summary: 'Sistema de inventario y ventas con microservicios gRPC de reportes y auditoría, diseñado para tolerar fallos.'
+cover: '../../assets/projects/placeholder.svg'
+coverAlt: 'Captura pendiente del sistema gRPC Inventory'
+technologies: ['Node.js', 'gRPC', 'Protocol Buffers', 'SQLite']
+repoUrl: 'https://github.com/jerichd4c/grpc-inventory'
 date: 2026-10-27
 featured: true
 ---

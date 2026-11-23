@@ -1,10 +1,10 @@
 ---
-title: "Process Monitor"
-summary: "Monitor de procesos para Linux en la terminal, estilo htop, escrito en Go y leyendo directamente de /proc."
-cover: "../../assets/projects/placeholder.svg"
-coverAlt: "Captura pendiente del monitor de procesos en la terminal"
-technologies: ["Go", "Linux", "tcell"]
-repoUrl: "https://github.com/jerichd4c/process-monitor"
+title: 'Process Monitor'
+summary: 'Monitor de procesos para Linux en la terminal, estilo htop, escrito en Go y leyendo directamente de /proc.'
+cover: '../../assets/projects/placeholder.svg'
+coverAlt: 'Captura pendiente del monitor de procesos en la terminal'
+technologies: ['Go', 'Linux', 'tcell']
+repoUrl: 'https://github.com/jerichd4c/process-monitor'
 date: 2026-10-20
 featured: true
 ---
