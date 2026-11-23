@@ -1,0 +1,32 @@
+[
+  {
+    "id": "lenguajes",
+    "name": "Lenguajes",
+    "order": 1,
+    "items": ["JavaScript", "TypeScript", "Python", "Java", "Go", "C++", "C#", "SQL"]
+  },
+  {
+    "id": "backend",
+    "name": "Backend y sistemas distribuidos",
+    "order": 2,
+    "items": ["Node.js", "Express", "FastAPI", "gRPC", "Protocol Buffers", "REST", "OpenAPI", "Socket.IO", "WebRTC"]
+  },
+  {
+    "id": "frontend-db",
+    "name": "Frontend y bases de datos",
+    "order": 3,
+    "items": ["React", "Angular", "Vue", "Astro", "HTML", "CSS", "PostgreSQL", "SQLite"]
+  },
+  {
+    "id": "datos-ia",
+    "name": "Datos, IA y automatización",
+    "order": 4,
+    "items": ["Pandas", "Matplotlib", "TensorFlow", "OpenCV", "Tesseract OCR", "RPA"]
+  },
+  {
+    "id": "calidad",
+    "name": "Calidad y herramientas",
+    "order": 5,
+    "items": ["Pruebas unitarias y E2E", "RBAC", "Auditoría", "Git", "Linux", "Vercel", "Render", "Scrum"]
+  }
+]

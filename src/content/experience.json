@@ -1,0 +1,26 @@
+[
+  {
+    "id": "conservatorio-backend",
+    "type": "work",
+    "title": "Desarrollador Backend (Servicio Comunitario)",
+    "organization": "Conservatorio de Música José Luis Paz",
+    "location": "Maracaibo",
+    "start": "2026-02",
+    "end": "2026-04",
+    "highlights": [
+      "Unifiqué el frontend (React, TypeScript) y un backend heredado de microservicios (Express, PostgreSQL) en un monorepo con un entorno de desarrollo único.",
+      "Desarrollé el flujo completo de admisiones, con lista de espera y promoción automática al liberarse un cupo, y el control de acceso por roles (RBAC).",
+      "Implementé la emisión de documentos oficiales en PDF registrados en el servicio de auditoría.",
+      "Planifiqué el trabajo en 4 sprints con matrices de QA por rol y documenté la API con OpenAPI."
+    ]
+  },
+  {
+    "id": "uru-ingenieria",
+    "type": "education",
+    "title": "Ingeniería en Computación",
+    "organization": "Universidad Rafael Urdaneta",
+    "location": "Maracaibo",
+    "start": "2023-01",
+    "description": "Décimo trimestre. Promedio 16,3/20 (18,2/20 en los últimos dos años). Graduación esperada: diciembre de 2027."
+  }
+]
