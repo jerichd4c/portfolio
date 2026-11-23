@@ -9,7 +9,17 @@
     "id": "backend",
     "name": "Backend y sistemas distribuidos",
     "order": 2,
-    "items": ["Node.js", "Express", "FastAPI", "gRPC", "Protocol Buffers", "REST", "OpenAPI", "Socket.IO", "WebRTC"]
+    "items": [
+      "Node.js",
+      "Express",
+      "FastAPI",
+      "gRPC",
+      "Protocol Buffers",
+      "REST",
+      "OpenAPI",
+      "Socket.IO",
+      "WebRTC"
+    ]
   },
   {
     "id": "frontend-db",
@@ -27,6 +37,15 @@
     "id": "calidad",
     "name": "Calidad y herramientas",
     "order": 5,
-    "items": ["Pruebas unitarias y E2E", "RBAC", "Auditoría", "Git", "Linux", "Vercel", "Render", "Scrum"]
+    "items": [
+      "Pruebas unitarias y E2E",
+      "RBAC",
+      "Auditoría",
+      "Git",
+      "Linux",
+      "Vercel",
+      "Render",
+      "Scrum"
+    ]
   }
 ]
