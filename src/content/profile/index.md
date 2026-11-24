@@ -9,6 +9,7 @@ socials:
     url: 'https://github.com/jerichd4c'
     icon: 'github'
 cv: '/cv-sebastian-cohen.pdf'
+contactMessage: 'Estoy abierto a pasantías, proyectos y oportunidades en desarrollo backend. Escríbeme por correo y te respondo lo antes posible.'
 seoDescription: 'Portafolio de Sebastián Cohen, estudiante de Ingeniería en Computación enfocado en backend, sistemas distribuidos y automatización.'
 ---
 

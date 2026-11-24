@@ -1,0 +1,101 @@
+---
+import ExternalLink from '../components/ExternalLink.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getProfile } from '../lib/content';
+
+const profile = await getProfile();
+const { name, email, socials, cv, location, contactMessage } = profile.data;
+
+// Show "github.com/jerichd4c" instead of the full URL
+function displayUrl(url: string) {
+  const { hostname, pathname } = new URL(url);
+  return `${hostname.replace(/^www\./, '')}${pathname.replace(/\/$/, '')}`;
+}
+---
+
+<BaseLayout title="Contacto" description={`Medios de contacto y enlaces profesionales de ${name}.`}>
+  <section class="container contact" aria-labelledby="contact-title">
+    <header class="page-header">
+      <h1 id="contact-title">Contacto</h1>
+      <p>{contactMessage}</p>
+    </header>
+
+    <ul class="channels">
+      <li class="channel">
+        <h2>Correo</h2>
+        <a href={`mailto:${email}`}>{email}</a>
+      </li>
+      {socials.map((social) => (
+        <li class="channel">
+          <h2>{social.label}</h2>
+          <ExternalLink href={social.url}>{displayUrl(social.url)}</ExternalLink>
+        </li>
+      ))}
+      {cv && (
+        <li class="channel">
+          <h2>Currículum</h2>
+          <a href={cv} download>
+            Descargar CV <span class="sr-only">(PDF)</span>
+          </a>
+        </li>
+      )}
+      {location && (
+        <li class="channel">
+          <h2>Ubicación</h2>
+          <p>{location}</p>
+        </li>
+      )}
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact {
+    padding-block: 3rem;
+  }
+
+  .page-header {
+    display: grid;
+    gap: 0.75rem;
+    max-width: 65ch;
+    margin-bottom: 2rem;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 2.5rem);
+  }
+
+  .page-header p {
+    color: var(--muted);
+    font-size: 1.125rem;
+  }
+
+  .channels {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    gap: 1rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .channel {
+    display: grid;
+    gap: 0.375rem;
+    padding: 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow-wrap: anywhere;
+  }
+
+  h2 {
+    color: var(--muted);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .channel a {
+    font-weight: 600;
+  }
+</style>
