@@ -1,0 +1,90 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import TechList from './TechList.astro';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { title, summary, cover, coverAlt, technologies, teamSize } = project.data;
+const href = `/proyectos/${project.id}`;
+---
+
+<article class="project-card">
+  <Image
+    class="cover"
+    src={cover}
+    alt={coverAlt}
+    widths={[400, 800]}
+    sizes="(min-width: 1024px) 23rem, (min-width: 640px) 50vw, 100vw"
+  />
+  <div class="body">
+    <h3>
+      <a href={href}>{title}</a>
+    </h3>
+    <p class="summary">{summary}</p>
+    {teamSize > 1 && <p class="team">Proyecto en equipo de {teamSize} personas</p>}
+    <TechList items={technologies} label={`Tecnologías de ${title}`} />
+  </div>
+</article>
+
+<style>
+  .project-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg);
+    transition: border-color 0.2s;
+  }
+
+  .project-card:hover,
+  .project-card:focus-within {
+    border-color: var(--accent);
+  }
+
+  .cover {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: top;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .body {
+    display: grid;
+    align-content: start;
+    gap: 0.75rem;
+    flex: 1;
+    padding: 1.25rem;
+  }
+
+  h3 {
+    font-size: 1.125rem;
+  }
+
+  h3 a {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  /* Stretch the title link so the whole card is clickable */
+  h3 a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  .summary {
+    color: var(--muted);
+  }
+
+  .team {
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+</style>
