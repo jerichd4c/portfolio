@@ -10,6 +10,11 @@ export function formatYearMonth(value: string) {
   return monthYear.format(new Date(Date.UTC(year, month - 1, 1)));
 }
 
+// Turns a Date into "oct 2026"
+export function formatDate(date: Date) {
+  return monthYear.format(date);
+}
+
 // Turns a start/end pair into "feb 2026 – abr 2026" or "ene 2023 – Actualidad"
 export function formatPeriod(start: string, end?: string) {
   return `${formatYearMonth(start)} – ${end ? formatYearMonth(end) : 'Actualidad'}`;

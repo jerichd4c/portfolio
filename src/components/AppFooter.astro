@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import ExternalLink from './ExternalLink.astro';
 
 interface Props {
   profile: CollectionEntry<'profile'>['data'];
@@ -20,10 +21,7 @@ const year = new Date().getFullYear();
       </li>
       {profile.socials.map((social) => (
         <li>
-          <a href={social.url} target="_blank" rel="noopener noreferrer">
-            {social.label}
-            <span class="sr-only"> (se abre en una pestaña nueva)</span>
-          </a>
+          <ExternalLink href={social.url}>{social.label}</ExternalLink>
         </li>
       ))}
     </ul>
