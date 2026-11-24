@@ -29,8 +29,8 @@ const profile = defineCollection({
           )
           .min(1),
         cv: z.string().startsWith('/').endsWith('.pdf').optional(),
-        seoDescription: z.string().min(50).max(160),
         contactMessage: z.string().min(1),
+        seoDescription: z.string().min(50).max(160),
       })
       .refine((data) => !data.avatar || data.avatarAlt, {
         message: 'Si hay avatar, avatarAlt es obligatorio',
