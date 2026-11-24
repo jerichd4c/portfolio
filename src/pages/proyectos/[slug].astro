@@ -1,0 +1,130 @@
+---
+import { Image } from 'astro:assets';
+import { render, type CollectionEntry } from 'astro:content';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ExternalLink from '../../components/ExternalLink.astro';
+import TechList from '../../components/TechList.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getProjects } from '../../lib/content';
+import { formatDate } from '../../lib/format';
+
+// One page per published project; drafts are already filtered out by getProjects()
+export async function getStaticPaths() {
+  const projects = await getProjects();
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { title, summary, cover, coverAlt, technologies, repoUrl, demoUrl, teamSize, date } =
+  project.data;
+const { Content } = await render(project);
+---
+
+<BaseLayout title={title} description={summary}>
+  <article class="container project">
+    <Breadcrumbs
+      items={[
+        { label: 'Inicio', href: '/' },
+        { label: 'Proyectos', href: '/proyectos' },
+        { label: title },
+      ]}
+    />
+
+    <header class="project-header">
+      <h1>{title}</h1>
+      <p class="summary">{summary}</p>
+      <p class="meta">
+        <time datetime={date.toISOString().slice(0, 10)}>{formatDate(date)}</time>
+        {teamSize > 1 ? ` · Equipo de ${teamSize} personas` : ' · Proyecto individual'}
+      </p>
+      <TechList items={technologies} label={`Tecnologías de ${title}`} />
+
+      {(repoUrl || demoUrl) && (
+        <div class="actions">
+          {demoUrl && (
+            <ExternalLink class="button primary" href={demoUrl}>
+              Ver demo
+            </ExternalLink>
+          )}
+          {repoUrl && (
+            <ExternalLink class="button" href={repoUrl}>
+              Ver código
+            </ExternalLink>
+          )}
+        </div>
+      )}
+    </header>
+
+    <Image
+      class="cover"
+      src={cover}
+      alt={coverAlt}
+      widths={[800, 1280]}
+      sizes="(min-width: 1184px) 72rem, 100vw"
+      loading="eager"
+      fetchpriority="high"
+    />
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    <p class="back">
+      <a href="/proyectos">← Volver a todos los proyectos</a>
+    </p>
+  </article>
+</BaseLayout>
+
+<style>
+  .project {
+    display: grid;
+    gap: 2rem;
+    padding-block: 2rem 1rem;
+  }
+
+  .project-header {
+    display: grid;
+    gap: 0.875rem;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    line-height: 1.15;
+  }
+
+  .summary {
+    max-width: 65ch;
+    color: var(--muted);
+    font-size: 1.125rem;
+  }
+
+  .meta {
+    font-size: 0.9375rem;
+    font-weight: 500;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+
+  .cover {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+
+  .back {
+    font-weight: 600;
+  }
+</style>
