@@ -1,0 +1,42 @@
+---
+import ProjectGrid from '../../components/ProjectGrid.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getProfile, getProjects } from '../../lib/content';
+
+const profile = await getProfile();
+const projects = await getProjects();
+const count = projects.length;
+---
+
+<BaseLayout
+  title="Proyectos"
+  description={`Proyectos de ${profile.data.name}: ${count} trabajos con su descripción, tecnologías, código y demostraciones.`}
+>
+  <section class="container projects-page" aria-labelledby="projects-title">
+    <header class="page-header">
+      <h1 id="projects-title">Proyectos</h1>
+      <p>{count === 1 ? '1 proyecto' : `${count} proyectos`}, del más reciente al más antiguo.</p>
+    </header>
+    <ProjectGrid projects={projects} />
+  </section>
+</BaseLayout>
+
+<style>
+  .projects-page {
+    padding-block: 3rem;
+  }
+
+  .page-header {
+    display: grid;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 2.5rem);
+  }
+
+  .page-header p {
+    color: var(--muted);
+  }
+</style>
