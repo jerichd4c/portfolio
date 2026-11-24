@@ -1,0 +1,26 @@
+---
+import TechBadge from './TechBadge.astro';
+
+interface Props {
+  items: string[];
+  label: string;
+}
+
+const { items, label } = Astro.props;
+---
+
+<ul class="tech-list" aria-label={label}>
+  {items.map((item) => (
+    <TechBadge label={item} />
+  ))}
+</ul>
+
+<style>
+  .tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0;
+    list-style: none;
+  }
+</style>
