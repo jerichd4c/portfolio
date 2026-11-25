@@ -17,7 +17,7 @@ const count = projects.length;
       <h1 id="projects-title">Proyectos</h1>
       <p>{count === 1 ? '1 proyecto' : `${count} proyectos`}, del más reciente al más antiguo.</p>
     </header>
-    <ProjectGrid projects={projects} />
+    <ProjectGrid projects={projects} headingLevel={2} eagerFirst />
   </section>
 </BaseLayout>
 

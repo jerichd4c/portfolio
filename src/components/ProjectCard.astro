@@ -5,11 +5,16 @@ import TechList from './TechList.astro';
 
 interface Props {
   project: CollectionEntry<'projects'>;
+  headingLevel?: 2 | 3;
+  eager?: boolean;
 }
 
-const { project } = Astro.props;
+const { project, headingLevel = 3, eager = false } = Astro.props;
 const { title, summary, cover, coverAlt, technologies, teamSize } = project.data;
 const href = `/proyectos/${project.id}`;
+
+// The page decides the heading level so the outline never skips a level
+const Heading = `h${headingLevel}` as 'h2' | 'h3';
 ---
 
 <article class="project-card">
@@ -19,11 +24,13 @@ const href = `/proyectos/${project.id}`;
     alt={coverAlt}
     widths={[400, 800]}
     sizes="(min-width: 1024px) 23rem, (min-width: 640px) 50vw, 100vw"
+    loading={eager ? 'eager' : 'lazy'}
+    fetchpriority={eager ? 'high' : undefined}
   />
   <div class="body">
-    <h3>
+    <Heading class="title">
       <a href={href}>{title}</a>
-    </h3>
+    </Heading>
     <p class="summary">{summary}</p>
     {teamSize > 1 && <p class="team">Proyecto en equipo de {teamSize} personas</p>}
     <TechList items={technologies} label={`Tecnologías de ${title}`} />
@@ -63,17 +70,17 @@ const href = `/proyectos/${project.id}`;
     padding: 1.25rem;
   }
 
-  h3 {
+  .title {
     font-size: 1.125rem;
   }
 
-  h3 a {
+  .title a {
     color: var(--text);
     text-decoration: none;
   }
 
   /* Stretch the title link so the whole card is clickable */
-  h3 a::after {
+  .title a::after {
     content: '';
     position: absolute;
     inset: 0;

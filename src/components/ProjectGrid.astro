@@ -4,16 +4,23 @@ import ProjectCard from './ProjectCard.astro';
 
 interface Props {
   projects: CollectionEntry<'projects'>[];
+  headingLevel?: 2 | 3;
+  // Load the first card's image right away when the grid is at the top of the page
+  eagerFirst?: boolean;
 }
 
-const { projects } = Astro.props;
+const { projects, headingLevel = 3, eagerFirst = false } = Astro.props;
 ---
 
 {projects.length > 0 ? (
   <ul class="project-grid">
-    {projects.map((project) => (
+    {projects.map((project, index) => (
       <li>
-        <ProjectCard project={project} />
+        <ProjectCard
+          project={project}
+          headingLevel={headingLevel}
+          eager={eagerFirst && index === 0}
+        />
       </li>
     ))}
   </ul>
