@@ -42,7 +42,8 @@ const year = new Date().getFullYear();
     align-items: center;
     justify-content: space-between;
     gap: 0.75rem 1.5rem;
-    padding-block: 1.5rem;
+    /* Extra bottom space so the badge Netlify injects (fixed, ~64px tall) never covers the links */
+    padding-block: 1.5rem 5.5rem;
   }
 
   .footer-links {
