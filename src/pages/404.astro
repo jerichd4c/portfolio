@@ -2,7 +2,11 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Página no encontrada" description="La página que buscas no existe o fue movida.">
+<BaseLayout
+  title="Página no encontrada"
+  description="La página que buscas no existe o fue movida."
+  noindex
+>
   <section class="container not-found">
     <h1>Página no encontrada</h1>
     <p>La dirección que abriste no existe o fue movida.</p>
