@@ -14,9 +14,21 @@ const skills = await getSkills();
 const work = await getExperience('work');
 const education = await getExperience('education');
 const featured = await getFeaturedProjects();
+
+// Structured data so search engines understand who the site is about
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: profile.data.name,
+  jobTitle: profile.data.role,
+  email: `mailto:${profile.data.email}`,
+  url: Astro.site?.href,
+  sameAs: profile.data.socials.map((social) => social.url),
+};
 ---
 
 <BaseLayout>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(person)} />
   <HeroSection profile={profile.data} />
 
   <PageSection id="sobre-mi" title="Sobre mí">

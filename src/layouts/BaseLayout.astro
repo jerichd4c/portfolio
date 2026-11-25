@@ -1,4 +1,6 @@
 ---
+import type { ImageMetadata } from 'astro';
+import { getImage } from 'astro:assets';
 import '../styles/global.css';
 import AppFooter from '../components/AppFooter.astro';
 import AppHeader from '../components/AppHeader.astro';
@@ -7,15 +9,26 @@ import { getProfile } from '../lib/content';
 interface Props {
   title?: string;
   description?: string;
+  image?: ImageMetadata;
+  noindex?: boolean;
 }
 
-const { title, description } = Astro.props;
+const { title, description, image, noindex = false } = Astro.props;
 const profile = await getProfile();
 const { name, role, seoDescription } = profile.data;
 
 // Home page uses "Name · Role"; inner pages use "Page | Name"
 const pageTitle = title ? `${title} | ${name}` : `${name} · ${role}`;
 const pageDescription = description ?? seoDescription;
+
+// Absolute URL of this page, built from `site` in astro.config.mjs
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+
+// Social networks need a PNG/JPG with an absolute URL; SVG placeholders are skipped
+const socialImage =
+  image && image.format !== 'svg'
+    ? new URL((await getImage({ src: image, width: 1200, format: 'png' })).src, Astro.site)
+    : undefined;
 ---
 
 <!doctype html>
@@ -26,12 +39,25 @@ const pageDescription = description ?? seoDescription;
     <title>{pageTitle}</title>
     <meta name="description" content={pageDescription} />
     <meta name="author" content={name} />
+    {noindex ? (
+      <meta name="robots" content="noindex" />
+    ) : (
+      <link rel="canonical" href={canonicalUrl} />
+    )}
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_VE" />
+    <meta property="og:site_name" content={name} />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={pageDescription} />
+    {socialImage && <meta property="og:image" content={socialImage} />}
+    <meta name="twitter:card" content={socialImage ? 'summary_large_image' : 'summary'} />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <slot name="head" />
   </head>
   <body>
     <a class="skip-link" href="#contenido">

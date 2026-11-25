@@ -27,7 +27,7 @@ const { title, summary, cover, coverAlt, technologies, repoUrl, demoUrl, teamSiz
 const { Content } = await render(project);
 ---
 
-<BaseLayout title={title} description={summary}>
+<BaseLayout title={title} description={summary} image={cover}>
   <article class="container project">
     <Breadcrumbs
       items={[
