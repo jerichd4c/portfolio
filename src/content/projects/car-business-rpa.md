@@ -1,8 +1,8 @@
 ---
 title: 'Sales Analysis RPA'
 summary: 'Automatización del análisis de ventas desde Excel, con gráficas y envío del reporte por WhatsApp.'
-cover: '../../assets/projects/placeholder.svg'
-coverAlt: 'Captura pendiente de una gráfica del reporte de ventas'
+cover: '../../assets/projects/car-business-rpa.png'
+coverAlt: 'Resumen del análisis de ventas generado por el RPA con las métricas clave'
 technologies: ['Python', 'Pandas', 'Matplotlib', 'Twilio']
 repoUrl: 'https://github.com/jerichd4c/car-business-rpa'
 date: 2025-11-15

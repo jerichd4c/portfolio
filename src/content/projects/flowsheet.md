@@ -1,8 +1,8 @@
 ---
 title: 'FlowSheet'
 summary: 'Sistema de gestión de hojas de tiempo con dashboards por rol, reportes y chat por proyecto.'
-cover: '../../assets/projects/placeholder.svg'
-coverAlt: 'Captura pendiente del dashboard de FlowSheet'
+cover: '../../assets/projects/flowsheet.png'
+coverAlt: 'Dashboard del módulo de Miembro con proyectos, horas de la semana y notificaciones'
 technologies: ['React', 'Node.js', 'PostgreSQL', 'Recharts']
 repoUrl: 'https://github.com/chiq-mari/FlowSheet'
 teamSize: 3
